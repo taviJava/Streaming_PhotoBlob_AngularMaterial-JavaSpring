@@ -2,8 +2,8 @@ package com.tavijava.streamingbackend.persistance.dto;
 
 public class VideoDto {
     private  long id;
-    private   String file_name;
-    private   String file_extension;
+    private   String filename;
+    private   String fileextension;
     private  UserDto userDto;
 
     public long getId() {
@@ -15,19 +15,19 @@ public class VideoDto {
     }
 
     public String getFile_name() {
-        return file_name;
+        return filename;
     }
 
     public void setFile_name(String file_name) {
-        this.file_name = file_name;
+        this.filename = file_name;
     }
 
     public String getFile_extension() {
-        return file_extension;
+        return fileextension;
     }
 
     public void setFile_extension(String file_extension) {
-        this.file_extension = file_extension;
+        this.fileextension = file_extension;
     }
 
     public UserDto getUserDto() {

@@ -1,0 +1,17 @@
+<mat-toolbar color="primary">
+  <span>My App</span>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button wi th menu icon" (click)="goToTable()">
+    <mat-icon> table_chart</mat-icon>
+  </button>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button wi th menu icon" (click)="goToGalery()">
+    <mat-icon>photo_album</mat-icon>
+  </button>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button wi th menu icon" (click)="goToVideo()">
+    <mat-icon>movie</mat-icon>
+  </button>
+  <span class="example-spacer"></span>
+
+  <button mat-icon-button class="example-icon" [ngStyle]="{'margin-right': '20px'}" *ngIf="isLoggedIn()" (click)="logOut()">
+    <mat-icon>exit_to_app</mat-icon>Logout
+  </button>
+</mat-toolbar>
