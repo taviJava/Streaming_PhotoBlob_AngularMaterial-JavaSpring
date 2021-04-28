@@ -1,0 +1,37 @@
+<app-navbar></app-navbar>
+<div class="mat-dialog-container">
+  <div   class= "form-container">
+    <mat-form-field appearance="fill">
+      <mat-label>First Name</mat-label>
+      <input matInput [formControl]="firstName"  required>
+      <mat-error *ngIf="firstName.invalid">{{getErrorMess()}}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class= "form-container">
+    <mat-form-field appearance="fill">
+      <mat-label  >Last Name</mat-label>
+      <input  matInput [formControl]="lastName" required>
+      <mat-error *ngIf="lastName.invalid">{{getErrLastName()}}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class= "form-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your email</mat-label>
+      <input matInput placeholder="pat@example.com"
+             [formControl]="email" required>
+      <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class= "form-container">
+    <mat-form-field appearance="fill">
+      <mat-label  >Last Name</mat-label>
+      <input  matInput [formControl]="password" required [type]="hide ? 'password' : 'text'">
+      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <mat-error *ngIf="password.invalid">{{getErrPassword()}}</mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <button mat-icon-button color="primary" (click)="backToUsers()"><mat-icon>keyboard_backspace</mat-icon></button>
+    <button mat-icon-button color="primary" [disabled]="blockSubmit()" (click)="addUser()"><mat-icon>save</mat-icon></button>
+  </div>
+</div>

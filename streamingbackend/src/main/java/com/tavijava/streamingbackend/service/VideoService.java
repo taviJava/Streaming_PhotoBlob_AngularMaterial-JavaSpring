@@ -1,7 +1,10 @@
 package com.tavijava.streamingbackend.service;
 
+import com.tavijava.streamingbackend.persistance.dto.UserDto;
 import com.tavijava.streamingbackend.persistance.dto.VideoDto;
+import com.tavijava.streamingbackend.persistance.model.UserModel;
 import com.tavijava.streamingbackend.persistance.model.Video;
+import com.tavijava.streamingbackend.repository.UserRepository;
 import com.tavijava.streamingbackend.repository.VideoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,22 +21,26 @@ import java.util.Optional;
 @Service
 public class VideoService {
     @Autowired
-    VideoRepository videoRepository;
+    private  VideoRepository videoRepository;
+    @Autowired
+    private UserRepository userRepository;
 
-    public void addVideo(MultipartFile file) {
-        Path filepath = Paths.get("C:\\Users\\Tavi\\Proiecte Intellij\\AMCrudUsers\\angMatCrudUserApp\\src\\assets\\VIDEO", file.getOriginalFilename());
+    public void addVideo(VideoDto videoDto) {
+        try{
+            Files.createDirectories(Paths.get("C:\\Users\\Tavi\\Proiecte Intellij\\Streaming_PhotoBlob_Security_AngularM_JavaS\\streamingFront\\src\\assets\\VIDEOS\\"+ videoDto.getUser().getEmail()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Path filepath = Paths.get("C:\\Users\\Tavi\\Proiecte Intellij\\Streaming_PhotoBlob_Security_AngularM_JavaS\\streamingFront\\src\\assets\\VIDEOS\\"+ videoDto.getUser().getEmail(), videoDto.getFilename());
         try (OutputStream os = Files.newOutputStream(filepath)) {
-            addVideoWithoutContentToDb(file);
-            os.write(file.getBytes());
+            addVideoWithoutContentToDb(videoDto);
+            os.write(videoDto.getData());
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void addVideoWithoutContentToDb(MultipartFile file) {
-        VideoDto videoDto = new VideoDto();
-        videoDto.setFile_name(file.getOriginalFilename());
-        videoDto.setFile_extension(file.getContentType());
+    private void addVideoWithoutContentToDb(VideoDto videoDto) {
         videoRepository.save(getModel(videoDto));
     }
 
@@ -57,11 +64,11 @@ public class VideoService {
     }
 
     public List<String> getVideoURLs() {
-        String basic = "assets/VIDEO/";
+        String basic = "assets/VIDEOS/";
         List<VideoDto> videoDtos = getAllVideo();
         List<String> urlList = new ArrayList<>();
         videoDtos.forEach(video -> {
-            String url = basic + video.getFile_name();
+            String url = basic + video.getUser().getEmail() +"/" + video.getFilename();
             urlList.add(url);
         });
         return urlList;
@@ -70,16 +77,23 @@ public class VideoService {
     private Video getModel(VideoDto videoDto) {
         Video video = new Video();
         video.setId(videoDto.getId());
-        video.setFile_extension(videoDto.getFile_extension());
-        video.setFile_name(videoDto.getFile_name());
+        video.setFile_extension(videoDto.getFileextension());
+        video.setFile_name(videoDto.getFilename());
+        Optional<UserModel> userModelOptional = userRepository.findById(videoDto.getUser().getId());
+        if (userModelOptional.isPresent()){
+            video.setUserModel(userModelOptional.get());
+        }
         return video;
     }
 
     private VideoDto getDto(Video video) {
         VideoDto videoDto = new VideoDto();
         videoDto.setId(video.getId());
-        videoDto.setFile_extension(video.getFile_extension());
-        videoDto.setFile_name(video.getFile_name());
+        videoDto.setFileextension(video.getFile_extension());
+        videoDto.setFilename(video.getFile_name());
+        UserDto userDto = new UserDto();
+        userDto.setEmail(video.getUserModel().getEmail());
+        videoDto.setUser(userDto);
         return videoDto;
     }
 }

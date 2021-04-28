@@ -54,7 +54,6 @@ public class UserService implements UserDetailsService {
     }
     public UserModel getModel(UserDto userDto){
         UserModel userModel = new UserModel();
-        userModel.setId(userDto.getId());
         userModel.setEmail(userDto.getEmail());
         userModel.setFirstName(userDto.getFirstName());
         userModel.setLastName(userDto.getLastName());
@@ -68,9 +67,6 @@ public class UserService implements UserDetailsService {
         userDto.setEmail(userModel.getEmail());
         userDto.setFirstName(userModel.getFirstName());
         userDto.setLastName(userModel.getLastName());
-        if (userModel.getPhoto()!=null){
-            userDto.setPhotoId(userModel.getPhoto().getId());
-        }
         userDto.setRole(userModel.getRole().name());
         return userDto;
     }
@@ -97,7 +93,7 @@ public class UserService implements UserDetailsService {
         UserDto userDto = new UserDto();
         if (userModelOptional.isPresent()){
             UserModel userModel = userModelOptional.get();
-            getDto(userModel);
+           userDto = getDto(userModel);
         }
         return userDto;
     }

@@ -1,0 +1,22 @@
+<app-navbar></app-navbar>
+<div class="content">
+  <div fxLayout="row wrap">
+    <div fxFlex="25%" *ngFor="let photo of photos">
+      <mat-card class="mat-elevation-z4" >
+        <mat-card-header>
+          <mat-card-title> {{photo[0].user.firstName + ' ' + photo[0].user.lastName}}</mat-card-title>
+        </mat-card-header>
+        <img mat-card-image [src]="photo[1]" alt="photo">
+        <mat-card-content>
+          <p>
+            {{'Email: ' + photo[0].user.email}}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button><mat-icon [ngStyle]="{'color':'blue'}">thumb_up_alt</mat-icon></button>
+          <button mat-button><mat-icon>share</mat-icon></button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

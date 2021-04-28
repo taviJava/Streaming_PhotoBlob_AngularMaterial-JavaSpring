@@ -1,5 +1,6 @@
 package com.tavijava.streamingbackend.controller;
 
+import com.tavijava.streamingbackend.persistance.dto.VideoDto;
 import com.tavijava.streamingbackend.persistance.model.Video;
 import com.tavijava.streamingbackend.service.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,8 @@ public class VideoController {
 
 
     @PostMapping("/video")
-    public void addVideo(@RequestBody MultipartFile file) {
-        service.addVideo(file);
+    public void addVideo(@RequestBody VideoDto videoDto) {
+        service.addVideo(videoDto);
     }
 
 

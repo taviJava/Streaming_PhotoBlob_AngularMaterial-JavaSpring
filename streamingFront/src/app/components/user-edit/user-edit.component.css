@@ -1,0 +1,16 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container > * {
+  width: 100%;
+}
+
+mat-button-toggle-group {
+  margin-left: 12px;
+}
+.mat-dialog-container{
+  margin: 40px;
+  padding: 20px;
+}

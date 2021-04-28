@@ -1,0 +1,14 @@
+<app-navbar></app-navbar>
+<mat-card class="container">
+  <mat-card-title>Galerie</mat-card-title>
+
+  <div class="lightbox-example">
+    <button mat-raised-button color="primary" [ngStyle]="{'display': 'none'}"  (click)="lightbox.open(0)">Open Lightbox</button>
+
+
+    <button mat-raised-button color="accent" [ngStyle]="{'display': 'none'}" (click)="lightbox.open(0, 'lightbox', {panelClass: 'fullscreen'})">Open Lightbox in fullscreen mode</button>
+  </div>
+  <mat-card fxLayout="row wrap" gallerize>
+    <mat-card-content  fxFlex="33.3333%" *ngFor="let gallery of photos" ><img class="img-responsive"   [src]=gallery alt="photo" ></mat-card-content>
+  </mat-card>
+</mat-card>

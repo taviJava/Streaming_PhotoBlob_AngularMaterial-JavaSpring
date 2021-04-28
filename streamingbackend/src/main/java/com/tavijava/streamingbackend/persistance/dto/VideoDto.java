@@ -1,10 +1,11 @@
 package com.tavijava.streamingbackend.persistance.dto;
 
 public class VideoDto {
-    private  long id;
-    private   String filename;
-    private   String fileextension;
-    private  UserDto userDto;
+    private long id;
+    private String filename;
+    private String fileextension;
+    private byte[] data;
+    private UserDto user;
 
     public long getId() {
         return id;
@@ -14,27 +15,35 @@ public class VideoDto {
         this.id = id;
     }
 
-    public String getFile_name() {
+    public String getFilename() {
         return filename;
     }
 
-    public void setFile_name(String file_name) {
-        this.filename = file_name;
+    public void setFilename(String filename) {
+        this.filename = filename;
     }
 
-    public String getFile_extension() {
+    public String getFileextension() {
         return fileextension;
     }
 
-    public void setFile_extension(String file_extension) {
-        this.fileextension = file_extension;
+    public void setFileextension(String fileextension) {
+        this.fileextension = fileextension;
     }
 
-    public UserDto getUserDto() {
-        return userDto;
+    public byte[] getData() {
+        return data;
     }
 
-    public void setUserDto(UserDto userDto) {
-        this.userDto = userDto;
+    public void setData(byte[] data) {
+        this.data = data;
+    }
+
+    public UserDto getUser() {
+        return user;
+    }
+
+    public void setUser(UserDto user) {
+        this.user = user;
     }
 }

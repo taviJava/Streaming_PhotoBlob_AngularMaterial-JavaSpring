@@ -4,22 +4,24 @@ package com.tavijava.streamingbackend.persistance.dto;
 public class PhotoDto {
     private String id;
 
+    private UserDto user;
+
     private String name;
 
     private String type;
 
-    private byte[] data;
+    private String data;
 
-    private UserDto userDto;
 
-    public PhotoDto(String id, String name, String type, byte[] data) {
+
+    public PhotoDto(String id, String name, String type, String data) {
         this.id = id;
         this.name = name;
         this.type = type;
         this.data = data;
     }
 
-    public PhotoDto(String name, String type, byte[] data) {
+    public PhotoDto(String name, String type, String data) {
         this.name = name;
         this.type = type;
         this.data = data;
@@ -52,19 +54,21 @@ public class PhotoDto {
         this.type = type;
     }
 
-    public byte[] getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(byte[] data) {
+    public void setData(String data) {
         this.data = data;
     }
 
-    public UserDto getUserDto() {
-        return userDto;
+
+    public UserDto getUser() {
+        return user;
     }
 
-    public void setUserDto(UserDto userDto) {
-        this.userDto = userDto;
+    public void setUser(UserDto user) {
+        this.user = user;
     }
+
 }

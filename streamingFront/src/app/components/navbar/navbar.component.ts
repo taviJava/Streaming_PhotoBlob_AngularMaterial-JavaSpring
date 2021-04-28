@@ -19,11 +19,31 @@ export class NavbarComponent implements OnInit {
   }
   // tslint:disable-next-line:typedef
   goToVideo(){
-    this.router.navigate(['video']);
+    this.router.navigate(['users/video']);
   }
   // tslint:disable-next-line:typedef
-  goToTable(){
-    this.router.navigate(['test2']);
+  goToUsersBasic(){
+    this.router.navigate(['users/basic/table']);
+  }
+  // tslint:disable-next-line:typedef
+  goToUsersFilter(){
+    this.router.navigate(['users/table/filter/sort/paginator']);
+  }
+  // tslint:disable-next-line:typedef
+  goToUsersFinal(){
+    this.router.navigate(['users/table/filterByColumn/sort/paginator/final']);
+  }
+  // tslint:disable-next-line:typedef
+  goToPhotoCard(){
+    this.router.navigate(['users/photoCards']);
+  }
+  // tslint:disable-next-line:typedef
+  goToPhotoSlide(){
+    this.router.navigate(['users/photoSlide']);
+  }
+  // tslint:disable-next-line:typedef
+  goToPhotoSlideLight(){
+    this.router.navigate(['users/photoSlideLightBox']);
   }
   isLoggedIn(): boolean {
     if (!this.auth.isUserLoggedIn()) {

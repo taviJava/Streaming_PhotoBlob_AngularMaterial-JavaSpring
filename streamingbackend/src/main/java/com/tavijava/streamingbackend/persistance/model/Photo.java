@@ -16,12 +16,12 @@ public class Photo {
 
     private String type;
     @Lob
-    private byte[] data;
+    private String data;
 
     @OneToOne(fetch = FetchType.EAGER)
     private UserModel user;
 
-    public Photo(String name, String type, byte[] data) {
+    public Photo(String name, String type, String data) {
         this.name = name;
         this.type = type;
         this.data = data;
@@ -55,11 +55,11 @@ public class Photo {
         this.type = type;
     }
 
-    public byte[] getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(byte[] data) {
+    public void setData(String data) {
         this.data = data;
     }
 

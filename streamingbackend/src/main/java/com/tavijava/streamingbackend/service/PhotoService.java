@@ -2,6 +2,7 @@ package com.tavijava.streamingbackend.service;
 
 import com.tavijava.streamingbackend.message.ResponseMessage;
 import com.tavijava.streamingbackend.persistance.dto.PhotoDto;
+import com.tavijava.streamingbackend.persistance.dto.UserDto;
 import com.tavijava.streamingbackend.persistance.model.Photo;
 import com.tavijava.streamingbackend.persistance.model.UserModel;
 import com.tavijava.streamingbackend.repository.PhotoRepository;
@@ -27,6 +28,9 @@ public class PhotoService {
     private PhotoRepository photoRepository;
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private UserService userService;
 
     public void addPhoto( PhotoDto photo) {
@@ -36,7 +40,10 @@ public class PhotoService {
         List<Photo> photos = photoRepository.findAll();
         List<PhotoDto> photoDtos = new ArrayList<>();
         photos.forEach(photo -> {
-            photoDtos.add(getPhotoDtoStd(photo));
+            PhotoDto photoDto = getPhotoDtoStd(photo);
+            UserDto userDto = userService.getDto(photo.getUser());
+            photoDto.setUser(userDto);
+            photoDtos.add(photoDto);
         });
         return photoDtos;
     }
@@ -61,7 +68,11 @@ public class PhotoService {
     }
     private Photo getModel(PhotoDto photoDto){
         Photo photo = getModelStd(photoDto);
-        photo.setUser(userService.getModel(photoDto.getUserDto()));
+        Optional<UserModel> userModelOptional = userRepository.findById(photoDto.getUser().getId());
+        if (userModelOptional.isPresent()){
+            UserModel userModel = userModelOptional.get();
+            photo.setUser(userModel);
+        }
         return photo;
     }
 

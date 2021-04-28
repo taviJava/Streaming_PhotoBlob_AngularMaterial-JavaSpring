@@ -8,7 +8,6 @@ export class User {
   lastName: string;
   password: string;
   role: string;
-  photoId: string;
   photo: Photo;
   video: Video[];
 }

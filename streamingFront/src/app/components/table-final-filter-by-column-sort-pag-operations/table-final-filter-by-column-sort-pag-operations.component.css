@@ -1,0 +1,22 @@
+.mat-row:nth-child(even){
+  background-color: white;
+}
+
+.mat-row:nth-child(odd){
+  background-color: gray;
+}
+.mat-header-cell{
+  background-color: black;
+  color: white;
+}
+.mat-dialog-container{
+  margin: 30px;
+  padding: 20px;
+}
+.color{
+  background-color: darkgreen;
+}
+mat-form-field{
+  margin-right: 40px;
+}
+

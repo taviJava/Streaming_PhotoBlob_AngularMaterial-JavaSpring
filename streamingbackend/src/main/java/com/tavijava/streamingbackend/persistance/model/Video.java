@@ -11,7 +11,7 @@ public class Video {
     private   String file_name;
     private   String file_extension;
     @ManyToOne(fetch = FetchType.EAGER)
-    private   UserModel userModel;
+    private   UserModel user;
     public String getFile_extension() {
         return file_extension;
     }
@@ -37,10 +37,10 @@ public class Video {
     }
 
     public UserModel getUserModel() {
-        return userModel;
+        return user;
     }
 
     public void setUserModel(UserModel userModel) {
-        this.userModel = userModel;
+        this.user = userModel;
     }
 }

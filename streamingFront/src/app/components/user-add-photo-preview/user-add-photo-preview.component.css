@@ -1,0 +1,17 @@
+.container{
+  margin-top: 20px;
+  margin-left: 450px;
+  margin-right: 450px;
+  max-height: 400px;
+}
+.image{
+  max-height: fit-content;
+  max-width: fit-content;
+}
+
+mat-button-toggle {
+  color: white;
+  font-weight: 500;
+  border-radius: inherit;
+}
+

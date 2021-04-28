@@ -1,0 +1,10 @@
+<app-navbar></app-navbar>
+
+<div class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop
+     (onFileDropped)="uploadFile($event)">
+  <input hidden type="file" #fileInput (change)="uploadFile($event)">
+</div>
+<div  class="files-list" *ngFor="let file of files;let i= index">
+  <p> {{ file.name }} </p>
+  <button mat-icon-button [ngStyle]="{'color':'red'}"> <mat-icon  (click)="deleteAttachment(i)">delete_forever</mat-icon> </button>
+</div>

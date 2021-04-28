@@ -1,5 +1,10 @@
 package com.tavijava.streamingbackend.persistance.dto;
 
+import org.w3c.dom.stylesheets.LinkStyle;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class UserDto {
     private long id;
     private String email;
@@ -7,8 +12,8 @@ public class UserDto {
     private String lastName;
     private String password;
     private String role;
-    private String photoId;
-    private PhotoDto photoDto;
+    private PhotoDto photo;
+    private List<VideoDto> video = new ArrayList<>();
 
     public long getId() {
         return id;
@@ -42,13 +47,6 @@ public class UserDto {
         this.lastName = lastName;
     }
 
-    public String getPhotoId() {
-        return photoId;
-    }
-
-    public void setPhotoId(String photoId) {
-        this.photoId = photoId;
-    }
 
     public String getPassword() {
         return password;
@@ -67,10 +65,26 @@ public class UserDto {
     }
 
     public PhotoDto getPhotoDto() {
-        return photoDto;
+        return photo;
     }
 
     public void setPhotoDto(PhotoDto photoDto) {
-        this.photoDto = photoDto;
+        this.photo = photoDto;
+    }
+
+    public PhotoDto getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(PhotoDto photo) {
+        this.photo = photo;
+    }
+
+    public List<VideoDto> getVideo() {
+        return video;
+    }
+
+    public void setVideo(List<VideoDto> video) {
+        this.video = video;
     }
 }

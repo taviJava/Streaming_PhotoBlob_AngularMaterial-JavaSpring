@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpEvent, HttpRequest} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {Video} from '../model/video';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +10,8 @@ export class VideoService {
   private url = 'http://localhost:8080/';
   constructor(private http: HttpClient) { }
 
-  uploadVideo(fd: FormData): Observable<HttpEvent<any>> {
-    const req = new HttpRequest('POST', this.url.concat('video'), fd, {
+  uploadVideo(video: Video): Observable<HttpEvent<any>> {
+    const req = new HttpRequest('POST', this.url.concat('video'), video, {
       reportProgress: true,
       responseType: 'json'
     });
@@ -19,7 +20,7 @@ export class VideoService {
 
   // tslint:disable-next-line:typedef
   videoList(){
-    return this.http.get(this.url.concat('video'));
+    return this.http.get('http://localhost:8080/video');
   }
   // tslint:disable-next-line:typedef
   getVideo(id: number){
